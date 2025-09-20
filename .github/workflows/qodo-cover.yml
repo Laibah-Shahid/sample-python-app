@@ -9,12 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Run Qodo Cover
         uses: qodo-ai/qodo-ci/.github/actions/qodo-cover@v0.1.12
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           project_language: python
-          repo_path: "."               # 👈 Force it to look at root folder
+          project_root: "."            # 👈 This is the correct input
+          source_folder: "."           # 👈 Tell it to scan repo root for code
+          test_folder: "."             # 👈 Tests are also at root
           test_command: "pytest --cov=. --cov-report=xml"
           model: gpt-4o
           desired_coverage: 80
