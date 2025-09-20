@@ -1,0 +1,19 @@
+name: Qodo Cover
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  qodo_cover_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Qodo Cover
+        uses: qodo-ai/qodo-ci/.github/actions/qodo-cover@v0.1.12
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          project_language: python
+          test_command: "pytest --cov=. --cov-report=xml"
+          model: gpt-4o
+          desired_coverage: 80
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
