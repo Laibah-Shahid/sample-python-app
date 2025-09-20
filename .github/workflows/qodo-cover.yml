@@ -19,9 +19,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           project_language: python
-          project_root: "."            # 👈 This is the correct input
-          source_folder: "."           # 👈 Tell it to scan repo root for code
-          test_folder: "."             # 👈 Tests are also at root
+          project_root: .
           test_command: pytest
           model: gpt-4o
           desired_coverage: 80
