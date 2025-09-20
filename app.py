@@ -1,3 +1,3 @@
 def mul(a, b):
     """Multiply two numbers."""
-    return a * b
+return a * b
