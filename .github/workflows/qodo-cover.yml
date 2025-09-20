@@ -20,6 +20,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           project_language: python
           project_root: .
+          source_folder: .
+          test_folder: .
           test_command: pytest
           model: gpt-4o
           desired_coverage: 80
